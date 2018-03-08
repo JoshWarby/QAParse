@@ -1,6 +1,7 @@
 package view;
 
 import javafx.event.ActionEvent;
+import javafx.scene.layout.HBox;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,6 +17,8 @@ public class RootPane extends GridPane{
 	private Button submitButton = new Button("Parse");
 	private Label inlbl = new Label("Paste Text");
 	private Label outlbl = new Label("Parsed Text");
+	private HBox box = new HBox();
+	private Label clickedlbl = new Label("");
 	
 	public RootPane (){
 		//styling
@@ -24,7 +27,7 @@ public class RootPane extends GridPane{
 		this.setHgap(20);
 		this.setAlignment(Pos.CENTER);
 		
-		double height = 700; //making a variable called height with a value 400
+		double height = 600; //making a variable called height with a value 400
 		double width = 500;  //making a variable called height with a value 300
 
 		//You can use these methods
@@ -37,8 +40,12 @@ public class RootPane extends GridPane{
 		this.add(outlbl, 1, 0);
 		this.add(inTA, 0, 1);
 		this.add(outTA, 1, 1);
-		this.add(submitButton, 0, 2);
+		box.getChildren().add(submitButton);
+		this.add(box, 0, 2);
 }
+	public void clearOut(){
+		outTA.clear();
+	}
 	public String getInString(){
 		return inTA.getText();
 	}

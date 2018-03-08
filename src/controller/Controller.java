@@ -12,6 +12,7 @@ public class Controller {
 	String inStr;
 	String outStr = "";
 	RootPane view;
+	int counter = 0;
 	public Controller(RootPane view) {
 		this.view = view;
 		this.attachEventHandlers();
@@ -22,9 +23,11 @@ public class Controller {
 	
 	private class AddSubmitHandler implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent e) {
+			view.clearOut();
 			inStr = view.getInString();
 
 			Scanner scanner = new Scanner(inStr);
+			outStr+="***************PASTE "+Integer.toString(counter)+"***************\n";
 			while (scanner.hasNextLine()) {
 			  String line = scanner.nextLine();
 			  if (isFullnameCaps(line)){
@@ -42,8 +45,8 @@ public class Controller {
 			  }
 			}
 			scanner.close();
-			System.out.println(outStr);
 			view.setOutString(outStr);
+			counter++;
 			}
 		}
 		
