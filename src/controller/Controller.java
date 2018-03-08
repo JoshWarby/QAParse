@@ -31,7 +31,9 @@ public class Controller {
 				  if (line.equals("Course Details")){
 					  outStr+=("-------NEW COURSE-------")+"\n";
 		    		}
-		    		else if (line.equals("Status Printed")){
+		    		else if (line.contains("Learners") && !line.contains("No.")){
+		    			line+=":";
+		    			outStr+=line+"\n";
 		    		}
 		    		
 		    		else{
@@ -49,7 +51,7 @@ public class Controller {
 	public boolean isFullnameCaps(String str) {
 	    boolean isValid = false;
 	    
-	    if (str.contains("Hide")||str.contains("Created")||str.contains("Submitted")||str.contains("Assessments")||str.contains("Certificate")||str.contains("Catastrophic")||str.contains("First Aid")||str.contains("MCQ")||str.contains("End Date")||str.contains("  ")){
+	    if (str.contains("Hide")||str.contains("Created")||str.contains("Submitted")||str.contains("Assessments")||str.contains("Certificate")||str.contains("Catastrophic")||str.contains("First Aid")||str.contains("MCQ")||str.contains("End Date")||str.contains("  ")||str.contains("Status Printed")){
 	    	isValid = false;
 	    }
 	    
