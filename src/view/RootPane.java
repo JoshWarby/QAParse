@@ -43,6 +43,10 @@ public class RootPane extends GridPane{
 		box.getChildren().add(submitButton);
 		this.add(box, 0, 2);
 }
+	
+	public void clearIn(){
+		inTA.clear();
+	}
 	public void clearOut(){
 		outTA.clear();
 	}

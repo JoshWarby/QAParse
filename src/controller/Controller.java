@@ -12,7 +12,7 @@ public class Controller {
 	String inStr;
 	String outStr = "";
 	RootPane view;
-	int counter = 0;
+	int counter = 1;
 	public Controller(RootPane view) {
 		this.view = view;
 		this.attachEventHandlers();
@@ -46,6 +46,7 @@ public class Controller {
 			}
 			scanner.close();
 			view.setOutString(outStr);
+			view.clearIn();
 			counter++;
 			}
 		}
