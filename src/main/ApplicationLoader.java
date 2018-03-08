@@ -33,7 +33,7 @@ public class ApplicationLoader extends Application{
 	public void start(Stage stage) throws Exception {
 		stage.setMinWidth(900); //sets min width and height for the stage window
 		stage.setMinHeight(800);
-		stage.setTitle("Admin Program");
+		stage.setTitle("QAParse");
 		stage.setScene(new Scene(view));
 		stage.show();
 	}

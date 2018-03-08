@@ -14,7 +14,7 @@ public class RootPane extends GridPane{
 
 	private TextArea inTA = new TextArea();
 	private TextArea outTA = new TextArea();
-	private Button submitButton = new Button("Parse");
+	private Button submitButton = new Button("   Parse   ");
 	private Label inlbl = new Label("Paste Text");
 	private Label outlbl = new Label("Parsed Text");
 	private HBox box = new HBox();
@@ -26,6 +26,7 @@ public class RootPane extends GridPane{
 		this.setVgap(15);
 		this.setHgap(20);
 		this.setAlignment(Pos.CENTER);
+		this.setStyle("-fx-background-color:#BDBDBD; -fx-opacity:1;");
 		
 		double height = 600; //making a variable called height with a value 400
 		double width = 500;  //making a variable called height with a value 300
