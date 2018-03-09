@@ -22,20 +22,27 @@ public class RootPane extends GridPane{
 	
 	public RootPane (){
 		//styling
-		this.setPadding(new Insets(80, 80, 80, 80));
-		this.setVgap(15);
-		this.setHgap(20);
+		this.setPadding(new Insets(10, 10, 10, 10));
+		this.setVgap(10);
+		this.setHgap(10);
 		this.setAlignment(Pos.CENTER);
 		this.setStyle("-fx-background-color:#BDBDBD; -fx-opacity:1;");
 		
-		double height = 600; //making a variable called height with a value 400
-		double width = 500;  //making a variable called height with a value 300
+		inlbl.setStyle("-fx-font-weight: bold");
+		outlbl.setStyle("-fx-font-weight: bold");
+		double height = 900; //making a variable called height with a value 400
+		double width = 700;  //making a variable called height with a value 300
 
 		//You can use these methods
-		inTA.setPrefHeight(height);  //sets height of the TextArea to 400 pixels 
-		inTA.setPrefWidth(width);    //sets width of the TextArea to 300 pixels
-		outTA.setPrefHeight(height);  //sets height of the TextArea to 400 pixels 
-		outTA.setPrefWidth(width);    //sets width of the TextArea to 300 pixels
+		inTA.prefWidthProperty().bind(this.widthProperty());
+		outTA.prefWidthProperty().bind(this.widthProperty());
+		inTA.prefHeightProperty().bind(this.heightProperty());
+		outTA.prefHeightProperty().bind(this.heightProperty());
+		
+		inTA.setMaxHeight(height);
+		outTA.setMaxHeight(height);
+		inTA.setMaxWidth(width);
+		outTA.setMaxWidth(width);
 		
 		this.add(inlbl, 0, 0);
 		this.add(outlbl, 1, 0);
