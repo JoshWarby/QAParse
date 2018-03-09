@@ -19,8 +19,16 @@ public class Controller {
 	}
 	private void attachEventHandlers() {
 		view.addSubmitHandler(new AddSubmitHandler()); //attaches add button handler
+		view.addClearHandler(new AddClearHandler());
 	}
-	
+	private class AddClearHandler implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent e) {
+			outStr = "";
+			view.clearOut();
+			view.clearIn();
+			counter = 1;
+		}
+	}
 	private class AddSubmitHandler implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent e) {
 			view.clearOut();
@@ -39,9 +47,9 @@ public class Controller {
 		    		
 		    		else{
 		    			outStr+=line+"\n";
-		    		}
+		    			}
+				  }
 			  }
-			}
 			scanner.close();
 			view.setOutString(outStr);
 			view.clearIn();

@@ -18,7 +18,7 @@ public class RootPane extends GridPane{
 	private Label inlbl = new Label("Paste Text");
 	private Label outlbl = new Label("Parsed Text");
 	private HBox box = new HBox();
-	private Label clickedlbl = new Label("");
+	private Button clearButton = new Button("Clear All");
 	
 	public RootPane (){
 		//styling
@@ -43,6 +43,7 @@ public class RootPane extends GridPane{
 		this.add(outTA, 1, 1);
 		box.getChildren().add(submitButton);
 		this.add(box, 0, 2);
+		this.add(clearButton, 1, 2);
 }
 	
 	public void clearIn(){
@@ -59,7 +60,9 @@ public class RootPane extends GridPane{
 		outTA.insertText(0,out);
 	}
 	
-	
+	public void addClearHandler(EventHandler<ActionEvent> handler) {
+		clearButton.setOnAction(handler);
+	}
 	public void addSubmitHandler(EventHandler<ActionEvent> handler) {
 		submitButton.setOnAction(handler);
 	}
