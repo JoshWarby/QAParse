@@ -1,26 +1,34 @@
 package controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import model.*;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import view.RootPane;
+import view.*;
 public class Controller {
 
 	String inStr;
 	String outStr = "";
 	RootPane view;
 	int counter = 1;
+	
 	public Controller(RootPane view) {
 		this.view = view;
 		this.attachEventHandlers();
 	}
+	
 	private void attachEventHandlers() {
 		view.addSubmitHandler(new AddSubmitHandler()); //attaches add button handler
 		view.addClearHandler(new AddClearHandler());
+		view.addCSVHandler(new AddCSVHandler());
 	}
+	
 	private class AddClearHandler implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent e) {
 			outStr = "";
@@ -29,6 +37,18 @@ public class Controller {
 			counter = 1;
 		}
 	}
+	
+	private class AddCSVHandler implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent e) {
+			try {
+				CSVWrite(outStr);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+	
 	private class AddSubmitHandler implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent e) {
 			view.clearOut();
@@ -42,12 +62,12 @@ public class Controller {
 				  if (line.equals("Course Details")){
 					  outStr+=("-------NEW COURSE-------")+"\n";
 		    		}
-		    		else if (line.contains("Learners") && !line.contains("No.")){
+				  else if (line.contains("Learners") && !line.contains("No.")){
+					  //
 		    		}
-		    		
-		    		else{
-		    			outStr+=line+"\n";
-		    			}
+				  else{
+					  outStr+=line+"\n";
+					  }
 				  }
 			  }
 			scanner.close();
@@ -57,30 +77,41 @@ public class Controller {
 			}
 		}
 		
-		
 	public boolean isFullnameCaps(String str) {
 	    boolean isValid = false;
 	    
 	    if (str.contains("Hide")||str.contains("Created")||str.contains("Submitted")||str.contains("Assessments")||str.contains("Certificate")||str.contains("Catastrophic")||str.contains("First Aid")||str.contains("MCQ")||str.contains("End Date")||str.contains("  ")||str.contains("Status Printed")||str.contains("Reference")){
 	    	isValid = false;
 	    }
-	    
 	    else if (str.contains(" Yes")||str.contains(" No")||str.contains("N/A")){
 	    	isValid = false;
 	    }
-	    
 	    else if (str.equals(" ")){
 	    	isValid = false;
 	    }
-	    
 	    else if (str.contains("Start Date")&& !str.contains("  ")){
 	    	isValid = true;
 	    }
 	    else{
 	    	isValid = true;
 	    }
-	    
 	    return isValid;
 	}
+	
+	 public void CSVWrite(String inStr) throws FileNotFoundException{
+	        PrintWriter pw = new PrintWriter(new File("./QA_Names.csv"));
+	        StringBuilder sb = new StringBuilder();
+
+	        Scanner scanner = new Scanner(inStr);
+			while (scanner.hasNextLine()) {
+			  String line = scanner.nextLine();
+			  sb.append(line+"\n");
+			  }
+			scanner.close();
+
+	        pw.write(sb.toString());
+	        pw.close();
+	        PopUp.display("CSV File Refreshed");
+	    }
 
 }

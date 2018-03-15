@@ -19,6 +19,7 @@ public class RootPane extends GridPane{
 	private Label outlbl = new Label("Parsed Text");
 	private HBox box = new HBox();
 	private Button clearButton = new Button("Clear All");
+	private Button csvButton = new Button("Export to CSV");
 	
 	public RootPane (){
 		//styling
@@ -48,9 +49,8 @@ public class RootPane extends GridPane{
 		this.add(outlbl, 1, 0);
 		this.add(inTA, 0, 1);
 		this.add(outTA, 1, 1);
-		box.getChildren().add(submitButton);
+		box.getChildren().addAll(submitButton,csvButton,clearButton);
 		this.add(box, 0, 2);
-		this.add(clearButton, 1, 2);
 }
 	
 	public void clearIn(){
@@ -72,5 +72,8 @@ public class RootPane extends GridPane{
 	}
 	public void addSubmitHandler(EventHandler<ActionEvent> handler) {
 		submitButton.setOnAction(handler);
+	}
+	public void addCSVHandler(EventHandler<ActionEvent> handler) {
+		csvButton.setOnAction(handler);
 	}
 }
