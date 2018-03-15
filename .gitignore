@@ -1,3 +1,5 @@
+#Produced CSV File
+*.csv
 # Compiled class file
 *.class
 
