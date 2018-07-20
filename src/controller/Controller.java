@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.regex.*;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.*;
@@ -80,11 +82,20 @@ public class Controller {
 	public boolean isFullnameCaps(String str) {
 	    boolean isValid = false;
 	    
-	    if (str.contains("Hide")||str.contains("Created")||str.contains("Submitted")||str.contains("Assessments")||str.contains("Certificate")||str.contains("Catastrophic")||str.contains("First Aid")||str.contains("MCQ")||str.contains("End Date")||str.contains("  ")||str.contains("Status Printed")||str.contains("Reference")){
+	    if (str.contains("N/A")||str.contains("Created")||str.contains("Submitted")||str.contains("Assessments")||str.contains("Certificate")||str.contains("Catastrophic")||str.contains("First Aid")||str.contains("MCQ")||str.contains("End Date")||str.contains("  ")||str.contains("Status Printed")||str.contains("Reference")){
 	    	isValid = false;
 	    }
-	    else if (str.contains(" Yes")||str.contains(" No")||str.contains("N/A")){
-	    	isValid = false;
+	    else if (str.contains(" Yes")||str.contains(" No")||str.contains("Hide")){
+	    	String pattern = "(Yes|No|Hide)(.)+";
+	        // Create a Pattern object
+	        Pattern r = Pattern.compile(pattern);
+	        // Now create matcher object.
+	        Matcher m = r.matcher(str);
+	        if (m.find( )) {
+	        	isValid = true;
+	        }else {
+	        	isValid = false;
+	        }
 	    }
 	    else if (str.equals(" ")){
 	    	isValid = false;
